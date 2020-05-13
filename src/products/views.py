@@ -47,6 +47,24 @@ class ProductDetailView(DetailView):
             raise Http404("Produto não existe")
         return instance
 
+class ProductDetailSlugView(DetailView):
+    queryset = Product.objects.all()
+    template_name = "products/detail.html"
+
+    def get_object(self, *args, **kwargs):
+        request = self.request
+        slug = self.kwargs.get('slug')
+        try:
+            instance = Product.objects.get_by_id(slug=slug, active=True)
+        except Product.DoesNotExist:
+            raise Http404("Não encontrado")
+        except Product.MultipleObjectsReturned:
+            qs = Product.objects.filter(slug=slug, active=True)
+            instance = qs.filter()
+        except:
+            raise Http404("Ops..")
+        return instance
+
 
 def product_detail_view(request, pk=None, *args, **kwargs):
     instance = Product.objects.get_by_id(pk)

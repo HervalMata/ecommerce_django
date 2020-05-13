@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 
-from products.views import ProductListView, product_list_view, ProductDetailView, product_detail_view, ProductFeaturedListView, ProductFeaturedDetailView
+from products.views import ProductListView, product_list_view, ProductDetailView, ProductDetailSlugView, product_detail_view, ProductFeaturedListView, ProductFeaturedDetailView
 from .views import home_page, about_page, contact_page, login_page, register_page
 
 urlpatterns = [
@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^featured/(?P<pk>\d+)/$', ProductFeaturedDetailView.as_view()),
     url(r'^products/(?P<pk>\d+)/$', ProductDetailView.as_view()),
     url(r'^products-fbv/(?P<pk>\d+)/$', product_detail_view),
+    url(r'^products/(?P<slug>[\w-]+)/$',  ProductDetailSlugView.as_view()),
     path('about', about_page),
     path('contact', contact_page)
 ]
