@@ -24,9 +24,9 @@ from .views import home_page, about_page, contact_page, login_page, register_pag
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_page),
-    path('login', login_page),
-    path('register', register_page),
+    path('', home_page, name='home'),
+    path('login', login_page, name='login'),
+    path('register', register_page, name='register'),
     #path('products', ProductListView.as_view()),
     #path('products-fbv', product_list_view),
     #url(r'^featured/$', ProductFeaturedListView.as_view()),
@@ -35,8 +35,8 @@ urlpatterns = [
     #url(r'^products-fbv/(?P<pk>\d+)/$', product_detail_view),
     #url(r'^products/(?P<slug>[\w-]+)/$',  ProductDetailSlugView.as_view()),
     url(r'^products/', include("products.urls", namespace='products')),
-    path('about', about_page),
-    path('contact', contact_page)
+    path('about', about_page, name='about'),
+    path('contact', contact_page, name='contact')
 ]
 
 if settings.DEBUG:
