@@ -35,6 +35,7 @@ urlpatterns = [
     #url(r'^products-fbv/(?P<pk>\d+)/$', product_detail_view),
     #url(r'^products/(?P<slug>[\w-]+)/$',  ProductDetailSlugView.as_view()),
     url(r'^products/', include("products.urls", namespace='products')),
+    url(r'^search/', include("search.urls", namespace='search')),
     path('about', about_page, name='about'),
     path('contact', contact_page, name='contact')
 ]
